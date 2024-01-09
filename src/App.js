@@ -1,3 +1,17 @@
+import Page from "./component/page";
+import Header from "./component/header";
+import Title from "./component/title";
+import Photo from "./component/photo";
+import Price from "./component/price";
+import RoomList from "./component/room-list";
+import Description from "./component/description";
+import PropertyList from "./component/property-list";
+import Amenities from "./component/amenities";
+import ContactInfo from "./component/contact-info";
+import AddPropertyList from "./component/add-property-list";
+import ReviewsList from "./component/reviews-list";
+import AttractionsList from "./component/attraction-list";
+
 function App() {
   const data = {
     listing_name: "Іст-Сайд Біл",
@@ -85,15 +99,15 @@ function App() {
 
     additional_properties: {
       house_rules:
-        "No smoking or pets allowed. Quiet hours from 10:00 PM to 7:00 AM.",
+        "Паління та домашні тварини заборонені. Тиша з 22:00 до 7:00",
       cancellation_policy:
-        "Flexible cancellation policy with full refund if canceled 7 days before check-in.",
+        "Гнучка політика скасування з повним поверненням коштів у разі скасування за 7 днів до заїзду.",
       local_transportation:
-        "Public buses and taxis available within walking distance.",
-      host_languages: ["English", "Spanish"],
-      special_offers: "10% discount for bookings of 7 nights or more.",
-      "check-in_instructions":
-        "Check-in time is 3:00 PM. Please contact us in advance with your estimated arrival time.",
+        "Громадські автобуси та таксі в межах пішої досяжності.",
+      host_languages: ["Англійська", "Іспанська"],
+      special_offers: "Знижка 10% при бронюванні від 7 ночей",
+      check_in_instructions:
+        "Час реєстрації - 15:00. Будь ласка, зв'яжіться з нами заздалегідь, повідомте орієнтовний час свого прибуття.",
     },
 
     guestReviews: [
@@ -144,7 +158,40 @@ function App() {
     ],
   };
 
-  return <div>Hello World</div>;
+  //=====================================================================
+
+  return (
+    <Page>
+      <Header />
+      <Title
+        title={data.listing_name}
+        rating={data.reviews_summary.average_rating}
+        review={data.reviews_summary.total_reviews}
+        city={data.location.city}
+        country={data.location.country}
+        superhost={data.superhost}
+      />
+      <Photo src={data.image} name={data.listing_name} />
+      <Price
+        price={data.price.original_price}
+        discount={data.price.discounted_price}
+        currency={data.price.currency}
+        cleaning={data.price.cleaning_fee}
+        service={data.price.service_fee}
+        checkin={data.availability.checkin_date}
+        checkout={data.availability.checkout_date}
+      />
+      <RoomList list={data.roomTypes} />
+      <Description title={"Опис"} children={data.description} />
+      <PropertyList property={data.property_details} />
+      <Description title={"Про сусідів"} children={data.neighborhood_info} />
+      <Amenities amenities={data.amenities} />
+      <ContactInfo info={data.contact_info} />
+      <AddPropertyList property={data.additional_properties} />
+      <ReviewsList list={data.guestReviews} />
+      <AttractionsList list={data.nearbyAttractions} />
+    </Page>
+  );
 }
 
 export default App;

@@ -1,0 +1,28 @@
+.review__block {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.review__list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.review {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    color: #000;
+    font-size: 16px;
+}
+
+.review__name {
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+
